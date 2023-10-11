@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Background</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-image 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        async function fetchCatImage() {
+            try {
+                const response = await fetch("https://api.thecatapi.com/v1/images/search");
+                const data = await response.json();
+                const imageUrl = data[0].url;
+                document.body.style.backgroundImage = `url('${imageUrl}')`;
+            } catch (error) {
+                console.error("Error fetching cat image:", error);
+            }
+        }
+
+        // Fetch a cat image when the page loads
+        fetchCatImage();
+    </script>
+</body>
+</html>
